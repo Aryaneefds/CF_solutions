@@ -1,0 +1,45 @@
+
+
+
+const readline=require('readline')
+const rl = readline.createInterface({
+input:process.stdin,
+output:process.stdout
+})
+
+input=[]
+
+rl.on('line', (line)=>{
+input.push(line.trim())
+})
+rl.on('close', ()=> main(input))
+
+function int(t){
+return parseInt(t)
+}
+
+function str_arr(str){
+return str.split(' ').map(Number)
+}
+
+
+function main(input){
+const t = int(input[0]);
+let idx=1
+for( let i=0;i < t;i++){
+let [n,x]= str_arr(input[idx++])
+let arr= str_arr(input[idx++])
+let diff=arr[0]
+if(n>1){
+    for(let j=1;j<n;j++){
+    temp=arr[j]-arr[j-1]
+    diff= temp>diff? temp:diff;
+    }
+}
+
+let last=2*(x-arr[n-1])
+let mpv= diff>=last? diff:last;
+console.log(mpv)
+}
+
+}
