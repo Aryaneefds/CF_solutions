@@ -1,0 +1,45 @@
+const readline=require('readline')
+const rl = readline.createInterface({
+input:process.stdin,
+output:process.stdout
+})
+
+input=[]
+
+rl.on('line', (line)=>{
+input.push(line.trim())
+})
+rl.on('close', ()=> main(input))
+
+function int(t){
+return parseInt(t)
+}
+
+function str_arr(str){
+return str.split(' ').map(Number)
+}
+
+
+
+
+function main(input){
+const t = int(input[0]);
+let idx=1
+for( let i=0;i < t;i++){
+let n = int(input[idx++])
+let str=input[idx++]
+let arr = str.split('#').filter(ele => ele!=='');
+let count=0;
+for(let a of arr){
+    if(a.length>2){
+        count = 2;
+        break;
+    }
+    else{
+        count=a.length==2? count+2:count+1;
+    }
+}
+console.log(count)
+}
+
+}
